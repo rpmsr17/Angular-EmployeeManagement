@@ -1,0 +1,44 @@
+
+<div id="edittitlecontainer">
+    <label id="editemptitle">{{title}}</label><br/>
+</div>
+
+<div id="edittablecontainer">
+    <form [formGroup]="formdata" (ngSubmit)="onclickSubmit(formdata.value)">
+        <table align="center">
+            <tr>
+                <td><label>Employee Name </label></td>
+                <td>: <input type="text" id="name" required minlength="3" #name formControlName="name"/></td>
+            </tr>
+            <tr><td></td><div id="errorcontainer" *ngIf="!formdata.controls['name'].valid && formdata.controls['name'].touched ">
+                Please enter your name. Employee name should consist of minimum of 3 characters. Only alphabets are allowed.</div></tr>
+            <tr> 
+                <td><label>Location </label></td>
+                <td>: <select id="location" formControlName="location">
+                        <option value="Chennai">Chennai</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                    </select>    
+                </td>
+            </tr>
+            <tr><td></td><div id="errorcontainer" *ngIf="!formdata.controls['location'].valid && formdata.controls['location'].touched">
+                Please select your location.</div></tr>
+            <tr>
+                <td><label>Email </label></td>
+                <td>: <input type="email" id="email" formControlName="email" /></td>   
+            </tr>
+            <tr><td></td><div id="errorcontainer" *ngIf="!formdata.controls['email'].valid && formdata.controls['email'].touched">
+                Please enter your valid email ID.</div></tr>
+            <tr>
+                <td><label>Mobile </label></td>
+                <td>: <input type="number" id="mobile" formControlName="mobile" /></td>     
+            </tr>
+            <tr><td></td><div id="errorcontainer" *ngIf="!formdata.controls['mobile'].valid && formdata.controls['mobile'].touched">
+                Please enter your 10 digit valid mobile number.</div></tr>
+        </table>
+        <br/><br/>
+        <input id="Update" type="submit" value="Update" [disabled]="!formdata.valid">
+    </form>
+</div>
+

@@ -1,0 +1,28 @@
+<div id="Filtercontainer">
+    <label>Filter By : </label>&nbsp;
+    <input type="text" id="Filter" [(ngModel)]="nameFilter"/>
+</div>
+<div id="List">
+    <label>Total Number of Employees : </label><label id="count">{{count}}</label><br/><br/>
+    <table border="2%" align="center">
+        <tr>
+            <th>Emp ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let item of items | async | employeeFilter:nameFilter">
+            <td><a routerLink = "/EmployeeDetails" id = "{{item.empid}}" (click)="empdetails($event)">{{ item.empid }}</a></td>
+            <td><label id="name{{item.empid}}">{{ item.name }}</label></td>
+            <td><label id="location{{item.empid}}">{{item.location}}</label></td> 
+            <td><label id="email{{item.empid}}">{{ item.email }}</label></td>
+            <td><label id="mobile{{item.empid}}">{{item.mobile}}</label></td>
+            <td><button id = "{{item.empid}}" (click)="editemp($event)">Edit{{item.empid}}</button></td>
+            <td><button id = "{{item.empid}}" (click)="delemp($event)">Delete{{item.empid}}</button></td>
+        </tr>
+    </table>
+</div>
+
